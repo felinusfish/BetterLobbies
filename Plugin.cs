@@ -25,7 +25,10 @@
             BLLog.LogInfo($"Config has loaded successfully.");
 
         _harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
-        _harmony.PatchAll(typeof(LobbyPatch));
+        _harmony.PatchAll(typeof(LockLobbyPatch));
+        _harmony.PatchAll(typeof(UnlockLobbyPatch));
+        _harmony.PatchAll(typeof(HostLobbyPatch));
+        _harmony.PatchAll(typeof(ChangeLevelPatch));
         }
     }
 }

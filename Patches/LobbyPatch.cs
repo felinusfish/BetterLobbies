@@ -1,5 +1,4 @@
-﻿
-using HarmonyLib;
+﻿using HarmonyLib;
 using UnityEngine;
 using BetterLobbies.Utils;
 using Photon.Pun;
@@ -43,46 +42,6 @@ namespace BetterLobbies.Patches
                 // mls.LogError("NetworkConnect instance is null, using previous method!");
                 return true;
             }
-        }
-    }
-    
-    [HarmonyPatch(typeof(SteamManager), "HostLobby")]
-    public class LobbyPatch
-    {
-        static bool Prefix()
-        {
-            HostLobbyAsync();
-            return false;
-        }
-        
-        static async void HostLobbyAsync()
-        {
-            Debug.Log("Steam: Hosting lobby...");
-            Lobby? lobby = await SteamMatchmaking.CreateLobbyAsync(ConfigManager.configLobbySize.Value);
-
-            if (!lobby.HasValue)
-            {
-                Debug.LogError("Couldn't instantiate lobby correctly!");
-                return;
-            }
-
-
-            switch (ConfigManager.configLobbyPrivacy.Value)
-            {
-                case "Public":
-                    lobby.Value.SetPublic();
-                    break;
-                case "FriendsOnly":
-                    lobby.Value.SetFriendsOnly();
-                    break;
-                case "Private":
-                    lobby.Value.SetPrivate();
-                    break;
-                default:
-                    lobby.Value.SetFriendsOnly();
-                    break;
-            }
-            lobby.Value.SetJoinable(b: true);
         }
     }
 }

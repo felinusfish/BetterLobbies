@@ -22,7 +22,7 @@ namespace BetterLobbies.Utils
         {
             configLobbySize = config.Bind("Lobby", "MaximumLobbySize", 6,
                 new ConfigDescription(
-                    "The maximum number of players that can join your lobby. Vanilla is 6. Lobbies larger than twenty may suffer performance issues.",
+                    "The maximum number of players that can join your lobby. Vanilla is 6. Lobbies larger than 12 may suffer performance issues.",
                     new AcceptableValueRange<int>(1, 100)
                 ));
             
@@ -32,7 +32,7 @@ namespace BetterLobbies.Utils
                     new AcceptableValueList<string>("Private", "FriendsOnly, Public")
                 ));
             
-            configLobbyModeration = config.Bind("Moderation", "ModerationInLobbiesEnabled", true,
+            configLobbyModeration = config.Bind("Moderation", "ModerationInLobbies", true,
                 new ConfigDescription(
                     "Kick and ban players in your lobby."
                 ));
@@ -54,7 +54,7 @@ namespace BetterLobbies.Utils
                     new AcceptableValueRange<int>(1, 100)
                 ));
             
-            configLateJoin = config.Bind("Experimental", "LateJoiningEnabled", false,
+            configLateJoin = config.Bind("Experimental", "LateJoining", false,
                 new ConfigDescription(
                     "Allows players to join your lobby whilst you're in the truck (post-shop, pre-round start)."
                 ));
