@@ -83,4 +83,16 @@ namespace BetterLobbies.Patches
             __instance.UnlockLobby();
         }
     }
+
+    [HarmonyPatch(typeof(SteamManager), "OnGameLobbyJoinRequested")]
+    public class GameLobbyJoinRequestedPatch
+    {
+        static async void Prefix(SteamManager lobby)
+        {
+            var currentLobby = (Lobby)AccessTools.Field(typeof(SteamManager), "currentLobby").GetValue(lobby);
+            Debug.Log("Steam: Game lobby join requested: " + currentLobby.Id.ToString());
+            await SteamMatchmaking.JoinLobbyAsync(currentLobby.Id);
+            RunManager.instance.ChangeLevel(true, false, RunManager.ChangeLevelType.Shop);
+        }
+    }
 }

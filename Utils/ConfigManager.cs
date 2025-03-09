@@ -22,8 +22,8 @@ namespace BetterLobbies.Utils
         {
             configLobbySize = config.Bind("Lobby", "MaximumLobbySize", 6,
                 new ConfigDescription(
-                    "The maximum number of players that can join your lobby. Vanilla is 6. Lobbies larger than 12 may suffer performance issues.",
-                    new AcceptableValueRange<int>(1, 100)
+                    "The maximum number of players that can join your lobby. Vanilla is 6. Photon's lobby limit is 20.",
+                    new AcceptableValueRange<int>(1, 20)
                 ));
             
             configLobbyPrivacy = config.Bind("Lobby", "LobbyPrivacy", "FriendsOnly",

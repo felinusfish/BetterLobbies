@@ -28,7 +28,8 @@
         _harmony.PatchAll(typeof(LockLobbyPatch));
         _harmony.PatchAll(typeof(UnlockLobbyPatch));
         _harmony.PatchAll(typeof(HostLobbyPatch));
-        _harmony.PatchAll(typeof(ChangeLevelPatch));
+        _harmony.PatchAll(typeof(RoundDirectorStartPatch));
+        _harmony.PatchAll(typeof(GameLobbyJoinRequestedPatch));
         }
     }
 }
